@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: JSP & Session Application
+    admin:
+      enabled: true
+
+  ###################
+  ## JDBC
+  ###################
+
+  datasource:
+    hikari:
+      jdbc-url: jdbc:log4jdbc:postgresql://localhost:5432/test
+#      jdbc-url: jdbc:postgresql://localhost:5432/fharenheit
+      username: postgres
+      password: postgres
+      #driver-class-name: org.postgresql.Driver
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      connection-test-query: SELECT 1
+      maximum-pool-size: 10
+      minimum-idle: 3
+    sql-script-encoding: UTF-8
+    continue-on-error: true
+    initialization-mode: always
+
+###################
+## Web Container
+###################
+
+server:
+  port: 8080
+
+###################
+## Management
+###################
+
+management:
+  health:
+    mail:
+      enabled: false
+
+###################
+## Logging
+###################
+
+logging:
+  level:
+    root: INFO
+    tomcat: INFO
+    freemarker: INFO
+    jdbc.connection: WARN
+    jdbc.audit: WARN
+    jdbc.sqlonly: WARN
+    jdbc.resultset: WARN
+    jdbc.resultsettable: DEBUG
+    org.hibernate: INFO
+    org.springframework: INFO
+    org.springframework.session: WARN
+    io.datadynamics: DEBUG
+    org.apache: INFO
+    com.zaxxer: INFO
+  group:
+    tomcat: org.apache.catalina, org.apache.coyote, org.apache.tomcat
